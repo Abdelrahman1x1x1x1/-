@@ -1,719 +1,190 @@
+```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>نور الكهف - عداد استغفار وتسبيح ومنبه الصلاة</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نور الكهف</title>
 
-        body {
-            font-family: 'Tajawal', sans-serif;
-            background: linear-gradient(135deg, #1C2739 0%, #0f1722 100%);
-            min-height: 100vh;
-            padding: 20px;
-            color: #e2e8f0;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
 
-        .container {
-            max-width: 500px;
-            margin: 0 auto;
-        }
+<style>
+body {
+    font-family: 'Tajawal';
+    background: #ffffff;
+    color: #1C2739;
+    text-align: center;
+    padding: 20px;
+}
 
-        /* الرأس */
-        .header {
-            text-align: center;
-            padding: 30px 20px;
-            background: linear-gradient(135deg, #fbbf24, #f59e0b);
-            border-radius: 40px;
-            margin-bottom: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-            color: #1e293b;
-        }
+.container {
+    max-width: 400px;
+    margin: auto;
+}
 
-        .header .icon {
-            font-size: 70px;
-            margin-bottom: 10px;
-        }
+.card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+}
 
-        .header h1 {
-            font-size: 32px;
-            font-weight: 800;
-            margin-bottom: 8px;
-        }
+h1 {
+    margin-bottom: 20px;
+}
 
-        .header p {
-            font-size: 16px;
-            opacity: 0.9;
-        }
+button {
+    background: #1C2739;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 50px;
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
 
-        /* البطاقات */
-        .card {
-            background: rgba(28, 39, 57, 0.95);
-            backdrop-filter: blur(2px);
-            border-radius: 28px;
-            padding: 24px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            border: 1px solid rgba(245, 158, 11, 0.2);
-            transition: transform 0.2s;
-        }
+button:hover {
+    opacity: 0.9;
+}
 
-        .card:hover {
-            transform: translateY(-2px);
-        }
-
-        .card h3 {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: #fbbf24;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border-right: 3px solid #f59e0b;
-            padding-right: 12px;
-        }
-
-        .card-desc {
-            color: #94a3b8;
-            font-size: 14px;
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-
-        /* حزمة الأذكار (استغفار وتسبيح) */
-        .zikr-double {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-            margin-bottom: 20px;
-        }
-
-        .zikr-box {
-            background: rgba(15, 23, 42, 0.6);
-            border-radius: 24px;
-            padding: 18px;
-            border: 1px solid rgba(245, 158, 11, 0.25);
-        }
-
-        .zikr-title {
-            font-size: 24px;
-            font-weight: 800;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #fcd34d;
-        }
-
-        .counter-area {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .counter-value {
-            background: #0f172a;
-            padding: 12px 24px;
-            border-radius: 60px;
-            font-size: 38px;
-            font-weight: 800;
-            font-family: monospace;
-            color: #fbbf24;
-            min-width: 130px;
-            text-align: center;
-            letter-spacing: 2px;
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.5), 0 2px 4px rgba(251,191,36,0.2);
-        }
-
-        .btn-zikr {
-            background: linear-gradient(135deg, #fbbf24, #f59e0b);
-            border: none;
-            padding: 12px 28px;
-            border-radius: 60px;
-            font-size: 20px;
-            font-weight: 700;
-            font-family: 'Tajawal', sans-serif;
-            color: #1e293b;
-            cursor: pointer;
-            transition: 0.2s;
-            box-shadow: 0 5px 0 #b45309;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn-zikr:active {
-            transform: translateY(2px);
-            box-shadow: 0 2px 0 #b45309;
-        }
-
-        .btn-reset {
-            background: #334155;
-            border: none;
-            padding: 8px 18px;
-            border-radius: 40px;
-            color: #facc15;
-            font-weight: 500;
-            cursor: pointer;
-            font-size: 13px;
-            transition: 0.2s;
-        }
-
-        .btn-reset:hover {
-            background: #475569;
-        }
-
-        /* الإحصائيات الكلية */
-        .stats-row {
-            display: flex;
-            gap: 12px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-
-        .stat-badge {
-            background: #0f172a;
-            border-radius: 28px;
-            padding: 12px 16px;
-            flex: 1;
-            text-align: center;
-            border: 1px solid #f59e0b30;
-        }
-
-        .stat-badge span:first-child {
-            font-size: 12px;
-            color: #94a3b8;
-            display: block;
-        }
-
-        .stat-number {
-            font-size: 28px;
-            font-weight: 800;
-            color: #fbbf24;
-        }
-
-        /* منبه الصلاة */
-        .time-picker {
-            width: 100%;
-            padding: 16px;
-            font-size: 20px;
-            font-family: 'Tajawal', monospace;
-            border: none;
-            border-radius: 60px;
-            background: #0f172a;
-            color: #facc15;
-            text-align: center;
-            font-weight: bold;
-            margin: 10px 0;
-            border: 1px solid #f59e0b60;
-        }
-
-        .btn-prayer {
-            background: linear-gradient(95deg, #2c6e5c, #1e4a3f);
-            width: 100%;
-            padding: 16px;
-            border: none;
-            border-radius: 60px;
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-            margin-top: 12px;
-            cursor: pointer;
-            transition: 0.2s;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .btn-prayer:active {
-            transform: scale(0.98);
-        }
-
-        .reminder-status {
-            margin-top: 16px;
-            background: #0f172a;
-            border-radius: 50px;
-            padding: 12px;
-            text-align: center;
-            font-size: 14px;
-            color: #cbd5e1;
-            border-right: 2px solid #f59e0b;
-        }
-
-        /* سجل الأنشطة */
-        .activity-log {
-            max-height: 160px;
-            overflow-y: auto;
-            background: #0f172a;
-            border-radius: 24px;
-            padding: 12px;
-            font-size: 13px;
-        }
-
-        .log-entry {
-            padding: 8px 0;
-            border-bottom: 1px solid #2d3a4e;
-            color: #cbd5e6;
-        }
-
-        /* أزرار إضافية */
-        .action-buttons {
-            display: flex;
-            gap: 12px;
-            margin-top: 18px;
-            flex-wrap: wrap;
-        }
-
-        .btn-secondary {
-            background: #2d3a4e;
-            padding: 10px 16px;
-            border-radius: 40px;
-            border: none;
-            color: #facc15;
-            font-weight: 500;
-            cursor: pointer;
-            flex: 1;
-            font-size: 14px;
-            transition: 0.2s;
-        }
-
-        .btn-secondary:hover {
-            background: #3b4a60;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #7f8ea3;
-            font-size: 12px;
-        }
-
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            left: 20px;
-            right: 20px;
-            background: #1e293b;
-            color: #facc15;
-            text-align: center;
-            padding: 14px;
-            border-radius: 60px;
-            font-weight: 500;
-            z-index: 1000;
-            animation: slideUp 0.25s ease;
-            box-shadow: 0 8px 20px black;
-            border: 1px solid #f59e0b;
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(100px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-    </style>
+.status {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+}
+</style>
 </head>
+
 <body>
+
 <div class="container">
-    <!-- الرأس -->
-    <div class="header">
-        <div class="icon">🍃🕌</div>
-        <h1>نور الكهف</h1>
-        <p>عداد استغفار • تسبيح • منبه الصلاة</p>
-    </div>
+    <h1>🍃 نور الكهف</h1>
 
-    <!-- حزمة التسبيح والاستغفار -->
     <div class="card">
-        <h3>📿 ذكر الله</h3>
-        <div class="zikr-double">
-            <!-- سبحان الله -->
-            <div class="zikr-box">
-                <div class="zikr-title">
-                    <span>🌿</span> سبحان الله وبحمده
-                </div>
-                <div class="counter-area">
-                    <span class="counter-value" id="tasbihCounter">0</span>
-                    <div style="display: flex; gap: 10px;">
-                        <button class="btn-zikr" id="btnTasbih">+1 🕊️</button>
-                        <button class="btn-reset" id="resetTasbih">تصفير</button>
-                    </div>
-                </div>
-            </div>
-            <!-- أستغفر الله -->
-            <div class="zikr-box">
-                <div class="zikr-title">
-                    <span>💧</span> أستغفر الله العظيم
-                </div>
-                <div class="counter-area">
-                    <span class="counter-value" id="istighfarCounter">0</span>
-                    <div style="display: flex; gap: 10px;">
-                        <button class="btn-zikr" id="btnIstighfar">+1 🤲</button>
-                        <button class="btn-reset" id="resetIstighfar">تصفير</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- إحصائيات كلية -->
-        <div class="stats-row">
-            <div class="stat-badge">
-                <span>📿 إجمالي التسبيح</span>
-                <div class="stat-number" id="totalTasbih">0</div>
-            </div>
-            <div class="stat-badge">
-                <span>💧 إجمالي الاستغفار</span>
-                <div class="stat-number" id="totalIstighfar">0</div>
-            </div>
-            <div class="stat-badge">
-                <span>⭐ مجموع الأذكار</span>
-                <div class="stat-number" id="totalAll">0</div>
-            </div>
-        </div>
-        <div class="action-buttons">
-            <button class="btn-secondary" id="resetAllDataBtn">🔄 إعادة ضبط الكلي</button>
-        </div>
+        <p id="location">📍 جاري تحديد موقعك...</p>
+        <p id="prayer">🕌 جاري تحميل وقت الجمعة...</p>
     </div>
 
-    <!-- منبه الصلاة (المستخدم يختار الوقت) -->
     <div class="card">
-        <h3>⏰ منبه الصلاة</h3>
-        <p class="card-desc">اختر وقت الأذان أو الصلاة التي ترغب في تذكيرك بها يومياً</p>
-        <input type="time" id="prayerTimeInput" class="time-picker" value="19:30">
-        <button id="setPrayerAlarmBtn" class="btn-prayer">
-            🔔 تفعيل المنبه عند هذا الوقت يومياً
-        </button>
-        <div id="prayerAlarmStatus" class="reminder-status">
-            ⏳ لم يتم تفعيل منبه الصلاة بعد
-        </div>
-        <div class="action-buttons" style="margin-top: 15px;">
-            <button id="cancelPrayerAlarmBtn" class="btn-secondary" style="background:#4a3729;">⏹️ إلغاء المنبه</button>
-        </div>
-        <div style="margin-top: 16px; background:#0f172a; border-radius: 28px; padding: 12px; font-size:13px; text-align:center;">
-            🕌 « حافظوا على الصلوات والصلاة الوسطى »
-        </div>
+        <button onclick="requestPermission()">🔔 تفعيل الإشعارات</button>
     </div>
 
-    <!-- سجل النشاطات -->
     <div class="card">
-        <h3>📋 سجل الأذكار والمنبه</h3>
-        <div id="activityLog" class="activity-log">
-            <div class="log-entry">✨ مرحباً بك، ابدأ بالتسبيح والاستغفار</div>
-        </div>
+        <button onclick="markPrayer()">✅ صليت الجمعة</button>
     </div>
 
-    <footer>
-        <p>🍃 نور الكهف | استغفار • تسبيح • منبه الصلاة</p>
-        <p style="font-size: 11px; margin-top: 5px;">اللهم اجعلنا من الذاكرين الشاكرين</p>
-    </footer>
+    <div class="card">
+        <button onclick="testNotification()">🧪 تجربة إشعار</button>
+    </div>
+
+    <p class="status" id="status"></p>
 </div>
 
 <script>
-    // ---------- البيانات الأساسية ----------
-    let tasbihSession = 0;       // سبحان الله الجلسة
-    let istighfarSession = 0;    // استغفار الجلسة
-    let totalTasbih = 0;         // إجمالي كل التسبيحات المخزنة
-    let totalIstighfar = 0;      // إجمالي الاستغفار المخزن
-    let activityArray = [];       // آخر الأنشطة
-    
-    // متغيرات منبه الصلاة
-    let prayerTimeout = null;
-    let activePrayerTime = null;   // "HH:MM"
-    
-    // تحميل البيانات من localStorage
-    function loadAllData() {
-        const savedTotalTasbih = localStorage.getItem('noor_total_tasbih');
-        const savedTotalIstighfar = localStorage.getItem('noor_total_istighfar');
-        const savedSessionTasbih = localStorage.getItem('noor_session_tasbih');
-        const savedSessionIstighfar = localStorage.getItem('noor_session_istighfar');
-        const savedActivity = localStorage.getItem('noor_activity_log');
-        const savedPrayerTime = localStorage.getItem('noor_prayer_alarm_time');
-        
-        if(savedTotalTasbih) totalTasbih = parseInt(savedTotalTasbih);
-        if(savedTotalIstighfar) totalIstighfar = parseInt(savedTotalIstighfar);
-        if(savedSessionTasbih) tasbihSession = parseInt(savedSessionTasbih);
-        if(savedSessionIstighfar) istighfarSession = parseInt(savedSessionIstighfar);
-        if(savedActivity) {
-            try {
-                activityArray = JSON.parse(savedActivity);
-                if(!Array.isArray(activityArray)) activityArray = [];
-            } catch(e) { activityArray = []; }
-        }
-        if(savedPrayerTime && savedPrayerTime !== "null") {
-            activePrayerTime = savedPrayerTime;
-            document.getElementById('prayerTimeInput').value = activePrayerTime;
-            scheduleDailyPrayerAlarm(activePrayerTime);
-            updatePrayerStatus(`⏰ المنبه مفعل يومياً الساعة ${activePrayerTime} (سينبهك حتى بعد إغلاق المتصفح)`, true);
-        } else {
-            activePrayerTime = null;
-            updatePrayerStatus(`⏳ لم يتم تفعيل منبه الصلاة بعد، اختر الوقت واضغط تفعيل`, false);
-        }
-        
-        updateUI();
-        renderActivityLog();
+let userLat, userLon;
+let fridayTime;
+
+// 📍 تحديد الموقع
+function getLocation() {
+    if (!navigator.geolocation) {
+        document.getElementById("location").innerText = "❌ الموقع غير مدعوم";
+        return;
     }
-    
-    function persistAll() {
-        localStorage.setItem('noor_total_tasbih', totalTasbih);
-        localStorage.setItem('noor_total_istighfar', totalIstighfar);
-        localStorage.setItem('noor_session_tasbih', tasbihSession);
-        localStorage.setItem('noor_session_istighfar', istighfarSession);
-        localStorage.setItem('noor_activity_log', JSON.stringify(activityArray.slice(0, 15)));
-        if(activePrayerTime) {
-            localStorage.setItem('noor_prayer_alarm_time', activePrayerTime);
-        } else {
-            localStorage.setItem('noor_prayer_alarm_time', null);
-        }
-    }
-    
-    function addActivity(text, emoji = "📿") {
-        const timeStr = new Date().toLocaleTimeString('ar', { hour: '2-digit', minute:'2-digit' });
-        activityArray.unshift(`${emoji} ${text} - ${timeStr}`);
-        if(activityArray.length > 15) activityArray.pop();
-        renderActivityLog();
-        persistAll();
-    }
-    
-    function renderActivityLog() {
-        const container = document.getElementById('activityLog');
-        if(!activityArray.length) {
-            container.innerHTML = '<div class="log-entry">✨ اضغط على أزرار التسبيح أو الاستغفار لتسجيل الأذكار</div>';
-            return;
-        }
-        container.innerHTML = activityArray.map(item => `<div class="log-entry">🔹 ${item}</div>`).join('');
-    }
-    
-    function updateUI() {
-        document.getElementById('tasbihCounter').innerText = tasbihSession;
-        document.getElementById('istighfarCounter').innerText = istighfarSession;
-        document.getElementById('totalTasbih').innerText = totalTasbih;
-        document.getElementById('totalIstighfar').innerText = totalIstighfar;
-        document.getElementById('totalAll').innerText = totalTasbih + totalIstighfar;
-    }
-    
-    // دوال التسبيح والاستغفار
-    function incrementTasbih() {
-        tasbihSession++;
-        totalTasbih++;
-        updateUI();
-        addActivity(`سبحان الله +1 (الجلسة: ${tasbihSession})`, "🌿");
-        showToast(`📿 سبحان الله | الإجمالي ${totalTasbih}`);
-        persistAll();
-    }
-    
-    function incrementIstighfar() {
-        istighfarSession++;
-        totalIstighfar++;
-        updateUI();
-        addActivity(`أستغفر الله +1 (الجلسة: ${istighfarSession})`, "💧");
-        showToast(`💧 أستغفر الله | الإجمالي ${totalIstighfar}`);
-        persistAll();
-    }
-    
-    function resetTasbihSessionOnly() {
-        tasbihSession = 0;
-        updateUI();
-        addActivity(`تم تصفير عداد سبحان الله (الجلسة الحالية)`, "🔄");
-        showToast(`✅ تم تصفير عداد التسبيح المؤقت`);
-        persistAll();
-    }
-    
-    function resetIstighfarSessionOnly() {
-        istighfarSession = 0;
-        updateUI();
-        addActivity(`تم تصفير عداد أستغفر الله (الجلسة الحالية)`, "🔄");
-        showToast(`✅ تم تصفير عداد الاستغفار المؤقت`);
-        persistAll();
-    }
-    
-    function resetAllTotalData() {
-        if(confirm("⚠️ تحذير: سيتم حذف إجمالي التسبيح والاستغفار الكلي وسجل الأنشطة بالكامل. لا يمكن التراجع. هل أنت متأكد؟")) {
-            totalTasbih = 0;
-            totalIstighfar = 0;
-            tasbihSession = 0;
-            istighfarSession = 0;
-            activityArray = [];
-            addActivity("تم إعادة ضبط جميع الإحصائيات والأذكار", "♻️");
-            updateUI();
-            renderActivityLog();
-            persistAll();
-            showToast("🔄 تمت إعادة الضبط الكامل بنجاح");
-        }
-    }
-    
-    // ----- منبه الصلاة (يومي متكرر) -----
-    function showToast(msg) {
-        const toast = document.createElement('div');
-        toast.className = 'toast';
-        toast.innerText = msg;
-        document.body.appendChild(toast);
-        setTimeout(() => toast.remove(), 2800);
-    }
-    
-    function sendPrayerNotification(timeString) {
-        if (!("Notification" in window)) {
-            showToast(`🔔 حان وقت الصلاة الساعة ${timeString} (فعّل الإشعارات في متصفحك)`);
-            addActivity(`⏰ منبه الصلاة: وقت الصلاة ${timeString} (تنبيه داخلي)`, "🕌");
-            return;
-        }
-        if (Notification.permission === "granted") {
-            new Notification("🕌 وقت الصلاة", {
-                body: `الساعة ${timeString} • حافظ على الصلاة، رحمك الله`,
-                icon: "🕌",
-                vibrate: [200, 100, 200]
-            });
-            showToast(`🔔 أذان الصلاة الساعة ${timeString} ، وفقك الله`);
-            addActivity(`🔔 تم تفعيل منبه الصلاة الساعة ${timeString}`, "🕌");
-        } else if (Notification.permission !== "denied") {
-            Notification.requestPermission().then(perm => {
-                if (perm === "granted") {
-                    new Notification("🕌 وقت الصلاة", { body: `الساعة ${timeString} ، قم للصلاة` });
-                    addActivity(`🔔 منبه الصلاة: ${timeString}`, "🕌");
-                } else {
-                    showToast(`🔔 حان وقت الصلاة ${timeString} (فعّل الإشعارات لتنبيه أفضل)`);
-                    addActivity(`⏰ تذكير الصلاة ${timeString} (تنبيه نصي)`, "🕌");
-                }
-            });
-        } else {
-            showToast(`🔔 حان وقت الصلاة ${timeString} (الإشعارات محظورة)`);
-            addActivity(`⏰ منبه الصلاة ${timeString}`, "🕌");
-        }
-    }
-    
-    function scheduleDailyPrayerAlarm(timeString) {
-        if(prayerTimeout) {
-            clearTimeout(prayerTimeout);
-            prayerTimeout = null;
-        }
-        if(!timeString) return;
-        
-        const [hour, minute] = timeString.split(':').map(Number);
-        let now = new Date();
-        let target = new Date();
-        target.setHours(hour, minute, 0, 0);
-        
-        if(target <= now) {
-            target.setDate(target.getDate() + 1);
-        }
-        
-        const delay = target.getTime() - now.getTime();
-        prayerTimeout = setTimeout(() => {
-            sendPrayerNotification(timeString);
-            // إعادة جدولة للمرة القادمة (يومياً)
-            scheduleDailyPrayerAlarm(timeString);
-            const nextDate = new Date();
-            nextDate.setHours(hour, minute, 0, 0);
-            if(nextDate <= new Date()) nextDate.setDate(nextDate.getDate() + 1);
-            updatePrayerStatus(`🔔 المنبه مفعل يومياً الساعة ${timeString} (التنبيه القادم: ${nextDate.toLocaleDateString('ar')} ${timeString})`, true);
-        }, delay);
-        
-        // تحديث الحالة
-        const nextTrigger = new Date(target);
-        updatePrayerStatus(`🔔 المنبه مفعل يومياً الساعة ${timeString} (التنبيه القادم: ${nextTrigger.toLocaleDateString('ar')} ${timeString})`, true);
-        persistAll();
-    }
-    
-    function updatePrayerStatus(msg, isActive) {
-        const statusDiv = document.getElementById('prayerAlarmStatus');
-        statusDiv.innerHTML = msg;
-        if(isActive) {
-            statusDiv.style.background = "#1e3a3a";
-            statusDiv.style.color = "#fde68a";
-            statusDiv.style.borderRight = "3px solid #f59e0b";
-        } else {
-            statusDiv.style.background = "#0f172a";
-            statusDiv.style.color = "#94a3b8";
-        }
-    }
-    
-    function setPrayerAlarm() {
-        const selectedTime = document.getElementById('prayerTimeInput').value;
-        if(!selectedTime) {
-            showToast("⚠️ الرجاء اختيار وقت الصلاة أولاً");
-            return;
-        }
-        
-        const requestNotif = () => {
-            if ("Notification" in window && Notification.permission === "default") {
-                Notification.requestPermission().then(() => {
-                    activateAlarm(selectedTime);
-                });
-            } else {
-                activateAlarm(selectedTime);
-            }
-        };
-        
-        if ("Notification" in window && Notification.permission === "denied") {
-            showToast("📢 لن تصلك إشعارات منبثقة بسبب الحظر، لكن المنبه سيعمل داخلياً");
-            activateAlarm(selectedTime);
-        } else {
-            requestNotif();
-        }
-    }
-    
-    function activateAlarm(timeVal) {
-        if(prayerTimeout) clearTimeout(prayerTimeout);
-        activePrayerTime = timeVal;
-        scheduleDailyPrayerAlarm(activePrayerTime);
-        addActivity(`تم تفعيل منبه الصلاة يومياً الساعة ${activePrayerTime}`, "⏰");
-        showToast(`✅ تم تفعيل منبه الصلاة الساعة ${activePrayerTime} يومياً`);
-        persistAll();
-    }
-    
-    function cancelPrayerAlarm() {
-        if(prayerTimeout) {
-            clearTimeout(prayerTimeout);
-            prayerTimeout = null;
-        }
-        activePrayerTime = null;
-        localStorage.removeItem('noor_prayer_alarm_time');
-        updatePrayerStatus(`⏸️ تم إلغاء منبه الصلاة. يمكنك تفعيله مجدداً.`, false);
-        addActivity(`تم إلغاء منبه الصلاة`, "⏹️");
-        showToast(`🚫 تم إلغاء المنبه بنجاح`);
-        persistAll();
-    }
-    
-    function restoreAlarmFromStorage() {
-        const stored = localStorage.getItem('noor_prayer_alarm_time');
-        if(stored && stored !== "null") {
-            activePrayerTime = stored;
-            document.getElementById('prayerTimeInput').value = activePrayerTime;
-            scheduleDailyPrayerAlarm(activePrayerTime);
-        } else {
-            activePrayerTime = null;
-        }
-    }
-    
-    // ربط الأحداث
-    document.getElementById('btnTasbih').addEventListener('click', incrementTasbih);
-    document.getElementById('btnIstighfar').addEventListener('click', incrementIstighfar);
-    document.getElementById('resetTasbih').addEventListener('click', resetTasbihSessionOnly);
-    document.getElementById('resetIstighfar').addEventListener('click', resetIstighfarSessionOnly);
-    document.getElementById('resetAllDataBtn').addEventListener('click', resetAllTotalData);
-    document.getElementById('setPrayerAlarmBtn').addEventListener('click', setPrayerAlarm);
-    document.getElementById('cancelPrayerAlarmBtn').addEventListener('click', cancelPrayerAlarm);
-    
-    // تهيئة التطبيق
-    loadAllData();
-    restoreAlarmFromStorage();
-    
-    window.addEventListener('beforeunload', () => {
-        persistAll();
+
+    navigator.geolocation.getCurrentPosition(pos => {
+        userLat = pos.coords.latitude;
+        userLon = pos.coords.longitude;
+
+        document.getElementById("location").innerText = "📍 تم تحديد موقعك";
+        getPrayerTimes();
+
+    }, () => {
+        document.getElementById("location").innerText = "❌ فشل تحديد الموقع";
     });
-    
-    console.log("🍃 نور الكهف - عداد استغفار وتسبيح ومنبه صلاة بنفس التصميم الأصلي (#1C2739)");
+}
+
+// 🕌 جلب مواقيت الصلاة
+async function getPrayerTimes() {
+    try {
+        let res = await fetch(`https://api.aladhan.com/v1/timings?latitude=${userLat}&longitude=${userLon}&method=5`);
+        let data = await res.json();
+
+        fridayTime = data.data.timings.Dhuhr;
+
+        document.getElementById("prayer").innerText =
+            "🕌 صلاة الجمعة: " + fridayTime;
+
+        scheduleFriday();
+
+    } catch {
+        document.getElementById("prayer").innerText = "❌ فشل تحميل الوقت";
+    }
+}
+
+// ⏰ جدولة الجمعة
+function scheduleFriday() {
+    let [h, m] = fridayTime.split(":");
+
+    let now = new Date();
+    let friday = new Date();
+
+    let diff = (5 - now.getDay() + 7) % 7;
+    if (diff === 0) diff = 7;
+
+    friday.setDate(now.getDate() + diff);
+    friday.setHours(h, m, 0);
+
+    let delay = friday - now;
+
+    document.getElementById("status").innerText =
+        "⏳ التذكير القادم يوم الجمعة";
+
+    setTimeout(() => {
+        notify("🕌 صلاة الجمعة", "حان وقت صلاة الجمعة");
+    }, delay);
+}
+
+// 🔔 إشعار
+function notify(title, body) {
+    if (Notification.permission === "granted") {
+        new Notification(title, { body });
+    }
+}
+
+// 🔐 طلب إذن
+function requestPermission() {
+    Notification.requestPermission().then(p => {
+        if (p === "granted") {
+            alert("✅ تم تفعيل الإشعارات");
+        } else {
+            alert("❌ لم يتم تفعيل الإشعارات");
+        }
+    });
+}
+
+// ✅ بعد الصلاة
+function markPrayer() {
+    notify("⏳ بعد ساعة", "سيتم تذكيرك بسورة الكهف");
+
+    setTimeout(() => {
+        notify("📖 سورة الكهف", "لا تنس قراءة سورة الكهف");
+    }, 60 * 60 * 1000);
+
+    document.getElementById("status").innerText =
+        "📖 سيتم تذكيرك بسورة الكهف بعد ساعة";
+}
+
+// 🧪 تجربة
+function testNotification() {
+    notify("🔥 تجربة", "الإشعارات تعمل بنجاح");
+}
+
+// 🚀 تشغيل
+getLocation();
 </script>
+
 </body>
 </html>
+```
